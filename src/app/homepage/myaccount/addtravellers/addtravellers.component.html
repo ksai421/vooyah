@@ -1,0 +1,227 @@
+<ion-content style="overflow: auto">
+  <ion-row>
+    <ion-col size-xs="12" size-md="4">
+      <div class="user_card">
+        <div class="text-center pt-5">
+          <div *ngIf="nameChange">
+            <div class="user_pic mx-auto position-relative">
+              <ion-text class="user_short_name">Fu</ion-text>
+            </div>
+            <ion-text class="user_name d-inline-block pt-3 pb-3">First User</ion-text>
+          </div>
+          <div *ngIf="!nameChange">
+            <div class="user_pic mx-auto position-relative">
+              <ion-text class="user_short_name">{{ iconName }}</ion-text>
+            </div>
+            <ion-text class="user_name d-inline-block pt-3 pb-3">{{
+              userNameShow
+            }}</ion-text>
+          </div>
+        </div>
+        <ion-row>
+          <ion-col size="4" class="text-center">
+            <ion-text class="color_primary">Upcoming<br />Trips</ion-text>
+            <ion-text class="color_primary d-block trip_count">10</ion-text>
+          </ion-col>
+          <ion-col size="4" class="text-center">
+            <ion-text class="color_primary">Completed<br />Trips</ion-text>
+            <ion-text class="color_primary d-block trip_count">10</ion-text>
+          </ion-col>
+          <ion-col size="4" class="text-center">
+            <ion-text class="color_primary">Canceled<br />Trips</ion-text>
+            <ion-text class="color_primary d-block trip_count">10</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-text class="joined d-inline-block pt-2 pb-2 pl-3">
+          <ion-icon name="calendar-outline" class="pr-2"></ion-icon>Joined Sept
+          04
+        </ion-text>
+      </div>
+    </ion-col>
+
+    <ion-col size-xs="12" size-md="8">
+      <ion-card>
+        <ion-card-header>
+          <ion-list class="bg-white">
+            <ion-item>
+              <div class="p-3">
+                <ion-label color="tertiary" class="color_primary">Save Travellers</ion-label>
+                <ion-note color="tertiary" class="color_primary">Add/Save travers for a faster booking experience
+                </ion-note>
+              </div>
+              <ion-icon name="add-circle-outline" class="color_primary cursor-pointer font-size-add-icon" slot="end"
+                (click)="presentPopover($event,'common')"></ion-icon>&nbsp;
+              <ion-text (click)="presentPopover($event,'common')" slot="end" class="color_primary cursor-pointer">Add Traveller
+              </ion-text>
+            </ion-item>
+          </ion-list>
+        </ion-card-header>
+        <ion-card-content class="bg-white">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <div>
+                  <ion-header class="color_primary row no-gutters">ADULT (12+)
+                  </ion-header>
+                  <div>
+                    <div class="d-flex" *ngFor="let member of adults;let ind=index" >
+                      <div class="p-2 flex-grow-1 color_primary">
+                        <ion-icon name="person-circle-outline" class="color_primary"></ion-icon>&nbsp;&nbsp;
+                        {{member.firstName}}
+                      </div>
+                      <div class="p-2">
+                        <ion-icon name="pencil-sharp"
+                          class="edit-delete-font-size cursor-pointer color_primary"
+                          (click)="editTraveller(member,member.id);$event.stopPropagation()"></ion-icon>
+                      </div>
+                      <div class="p-2">
+                        <ion-icon name="trash-sharp"
+                          class="cursor-pointer edit-delete-font-size color_primary"
+                          (click)="delete(member.id);$event.stopPropagation()">
+                        </ion-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <ion-header class="row no-gutters color_primary">CHILD (2-12)
+                  </ion-header>
+                  <div>
+                    <div class="d-flex" *ngFor="let member of children;let ind=index" >
+                      <div class="p-2 flex-grow-1 color_primary">
+                        <ion-icon name="person-circle-outline" class="color_primary"></ion-icon>&nbsp;&nbsp;{{member.firstName}}</div>
+                      <div class="p-2">
+                        <ion-icon name="pencil-sharp"
+                          class="edit-delete-font-size cursor-pointer color_primary"
+                          (click)="editTraveller(member,member.id);$event.stopPropagation()"></ion-icon>
+                      </div>
+                      <div class="p-2">
+                        <ion-icon name="trash-sharp"
+                          class="cursor-pointer edit-delete-font-size color_primary"
+                          (click)="delete(member.id);$event.stopPropagation()">
+                        </ion-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <ion-header class="color_primary row no-gutters">INFANT (0-2)
+                  </ion-header>
+                  <div>
+                    <div class="d-flex" *ngFor="let member of infants;let ind=index">
+                      <div class="p-2 flex-grow-1 color_primary">
+                        <ion-icon name="person-circle-outline" class="color_primary"></ion-icon>&nbsp;&nbsp;{{member.firstName}}</div>
+                      <div class="p-2">
+                        <ion-icon name="pencil-sharp"
+                          class="edit-delete-font-size cursor-pointer color_primary"
+                          (click)="editTraveller(member,member.id);$event.stopPropagation()"></ion-icon>
+                      </div>
+                      <div class="p-2">
+                        <ion-icon name="trash-sharp"
+                          class="cursor-pointer edit-delete-font-size color_primary"
+                          (click)="delete(member.id);$event.stopPropagation()">
+                        </ion-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <div></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- <ion-list lines="none" class="bg-white" *ngIf="navFrom!='dropdown'">
+            <ion-item>
+              <ion-button slot="end" shape="round" class="btn-next" color="tertiary" (click)="proceed()">Save
+              </ion-button>
+            </ion-item>
+          </ion-list> -->
+        </ion-card-content>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="card-header bg-color-header p-3 shadow">
+                <ion-label color="tertiary passport-font-size">Edit Traveller</ion-label>
+                <p>
+                  <ion-note class="font-size-header">Edit/Save travers for a faster booking experience</ion-note>
+                </p>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="registerForm">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input formControlName="firstName" type="text" class="form-control" id="name"
+                      placeholder="James Male " />
+                    <span class="text-danger" *ngIf="
+                        (registerFormControl.firstName.touched || submitted) &&
+                        registerFormControl.firstName.errors?.required
+                      ">
+                      Name is required
+                    </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" formControlName="gender">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input formControlName="email" type="text" class="form-control" id="email"
+                      placeholder="email@gmail.com" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input formControlName="mobileNo" type="text" class="form-control" id="mobile"
+                      placeholder="mobile number" />
+                  </div>
+                  <div class="form-group">
+                    <label for="dateOfBirth">Birth Date</label>
+                    <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth" />
+                  </div>
+                  <div>
+                    <ion-label color="tertiary passport-font-size">Passport Details</ion-label><br />
+                    <ion-note>Add/Save travers for a faster booking
+                      experience</ion-note>
+                  </div>
+                  <br />
+                  <div class="no-gutters" formGroupName="passport">
+                    <div class="form-group">
+                      <label for="mobile">Passport Detail</label>
+                      <input formControlName="number" type="text" (ngModelChange)="modelChangeFn($event)"
+                        class="form-control" id="passport" placeholder="Passport number" />
+                    </div>
+                    <div *ngIf="show">
+                      <div class="form-group">
+                        <label for="country">Issuing Country</label>
+                        <select formControlName="country" class="form-control" id="country">
+                          <option>India</option>
+                          <option>Usa</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="date" formControlName="expiry" class="form-control" id="expiryDate" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <ion-list lines="none">
+                    <ion-item>
+                      <ion-button (click)="onReset()" type="submit" slot="end" fill="clear" color="tertiary">Reset
+                      </ion-button>
+                      <ion-button (click)="onSubmit()" type="submit" slot="end" shape="round" color="tertiary">Save
+                      </ion-button>
+                    </ion-item>
+                    <div style="margin-top: 32px"></div>
+                  </ion-list>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-card>
+      <br /><br /><br /><br />
+    </ion-col>
+  </ion-row>
+</ion-content>

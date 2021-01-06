@@ -1,0 +1,520 @@
+# this is an auto generated file. This will be overwritten
+query GetAwsCurrentItineraryModel($id: ID!) {
+  getAWSCurrentItineraryModel(id: $id) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAwsCurrentItineraryModels(
+  $filter: ModelAWSCurrentItineraryModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSCurrentItineraryModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      username
+      itineraryName
+      currentItinerary {
+        startDate
+        endDate
+        originCity {
+          id
+          airportCode
+          airportName
+          cityName
+          countryCode
+          countryName
+          vendorName
+          latitude
+          longitude
+        }
+        destinationCities {
+          id
+          airportCode
+          airportName
+          cityName
+          countryCode
+          countryName
+          vendorName
+          latitude
+          longitude
+        }
+        travelType
+        travellers {
+          adultCount
+          childCount
+          infantCount
+        }
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetAwsUserProfileModel($id: ID!) {
+  getAWSUserProfileModel(id: $id) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAwsUserProfileModels(
+  $filter: ModelAWSUserProfileModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSUserProfileModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      username
+      userProfile {
+        id
+        firstName
+        middleName
+        lastName
+        relationshipToUser
+        dateOfBirth
+        gender
+        maritalStatus
+        mobileNo
+        email
+        passport {
+          number
+          issuedOn
+          expiry
+          country
+          city
+        }
+        address
+        city
+        country
+        zip
+      }
+      familyProfile {
+        id
+        firstName
+        middleName
+        lastName
+        relationshipToUser
+        dateOfBirth
+        gender
+        maritalStatus
+        mobileNo
+        email
+        passport {
+          number
+          issuedOn
+          expiry
+          country
+          city
+        }
+        address
+        city
+        country
+        zip
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetAwsTravelPackage($id: ID!) {
+  getAWSTravelPackage(id: $id) {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+query ListAwsTravelPackages(
+  $filter: ModelAWSTravelPackageFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSTravelPackages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      values
+      availableFrom
+      availableUpTo
+      packageOwners
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetAwsTrawexSettingsModel($id: ID!) {
+  getAWSTrawexSettingsModel(id: $id) {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListAwsTrawexSettingsModels(
+  $filter: ModelAWSTrawexSettingsModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSTrawexSettingsModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      flights {
+        default {
+          percent
+          minimum
+        }
+        byAirline {
+          name
+          code
+        }
+        byDestination {
+          name
+          code
+        }
+        cancel {
+          minimumFee
+          adminFee
+        }
+      }
+      hotels {
+        default {
+          percent
+          minimum
+        }
+        byHotelChain {
+          name
+          code
+        }
+        cancel {
+          minimumFee
+          adminFee
+        }
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetAwsMusementSettingsModel($id: ID!) {
+  getAWSMusementSettingsModel(id: $id) {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListAwsMusementSettingsModels(
+  $filter: ModelAWSMusementSettingsModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSMusementSettingsModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      activities {
+        default {
+          percent
+          minimum
+        }
+        byActivity {
+          name
+          code
+        }
+        cancel {
+          minimumFee
+          adminFee
+        }
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetAwsTransactionModel($id: ID!) {
+  getAWSTransactionModel(id: $id) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAwsTransactionModels(
+  $filter: ModelAWSTransactionModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSTransactionModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      username
+      itineraryName
+      transactionId
+      transactionType
+      transactionStatus
+      transactionDetails
+      travelStartDate
+      travelCity
+      email
+      mobile
+      transactionDecription
+      bookingReference
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetAwsStaycationTransactionModel($id: ID!) {
+  getAWSStaycationTransactionModel(id: $id) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAwsStaycationTransactionModels(
+  $filter: ModelAWSStaycationTransactionModelFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAWSStaycationTransactionModels(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      username
+      itineraryName
+      transactionId
+      transactionType
+      transactionStatus
+      transactionDate
+      transactionDetails
+      vendorId
+      packageId
+      bookingReference
+      email
+      mobileNo
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}

@@ -1,0 +1,676 @@
+<ion-content>
+  <div class="baner pt-2 pb-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 position-relative left_div">
+          <ion-text class="text_style position-absolute ml-3 text_style_Home">
+            <h4 class="Text_home_screen">
+              A handcrafted curation<br />
+              that evokes<br />
+              the rarest of luxuries and<br />
+              adventures, let your<br />
+              wanderlust run beyond you
+            </h4>
+          </ion-text>
+        </div>
+        <div class="col-lg-6 right_div">
+          <ion-img class="dottedimg img-fluid" src="../assets/images/aeroplane.svg"></ion-img>
+          <div class="row h-100">
+            <div class="col-xl-8 col-lg-10 col-md-8 col-sm-8 col-xs-12 mx-auto my-auto">
+              <ion-card class="bg-white home_form">
+                <ion-card-header>
+                  <ion-card-title class="text-center form_title mt-5 mb-3">Create your Trip with Voyaah</ion-card-title>
+                </ion-card-header>
+                <!-- home card -->
+                <ion-card-content class="p-lr position-relative" *ngIf="showhomecard">
+                  <ion-row class="mb-2">
+                    <ion-col size="12">
+                      <p class="pStyle m-0">From</p>
+                      <div class="position-relative">
+                        <ion-img class="formicon" [src]=" '../assets/images/Path 15407.svg' "></ion-img>
+                        <ion-input class="pl-4 borderline mr-3" [(ngModel)]="setorigincityname" ngDefaultControl
+                          [formControl]="fromcitysearchTerm" placeholder="Hyderabad, Telangana, India"></ion-input>
+                        <ion-card *ngIf="showfromcity" class="search_card">
+                          <ul *ngFor="let v of filterfromdata">
+                            <li *ngIf="v && v.cityName"
+                              (click)="getOriginCity(v.cityName,v.countryName, v.id, v.airportCode)"
+                              class="cursor-pointer">
+                              {{(v.cityName)+" , "+ (v.countryName) + '
+                              ('+(v.airportCode)+')'}}
+                            </li>
+                          </ul>
+                        </ion-card>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="mb-2">
+                    <ion-col size="12">
+                      <p class="pStyle m-0">To</p>
+                      <div class="position-relative">
+                        <ion-img class="formicon" [src]=" '../assets/images/Path 15407.svg' "></ion-img>
+                        <button class="button formicon12" (click)="navigationToAddDestination()">
+                          <ion-icon style="zoom: 2" name="add-circle-outline"></ion-icon>
+                        </button>
+                        <ion-input type="text" ngDefaultControl [formControl]="tocitysearchTerm"
+                          [(ngModel)]="setdestinationcityname" class="pl-4 borderline" placeholder="New York, USA">
+                        </ion-input>
+                        <ion-card *ngIf="showtocity" class="search_card">
+                          <ul *ngFor="let v of filtertodata">
+                            <li *ngIf="v && v.cityName"
+                              (click)="getDestinationCity(v.cityName,v.countryName, v.id, v.airportCode)">
+                              {{(v.cityName)+" , "+ (v.countryName) + '
+                              ('+(v.airportCode)+')'}}
+                            </li>
+                          </ul>
+                        </ion-card>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="mb-2">
+                    <ion-col size="12">
+                      <p class="m-0">Duration</p>
+                      <mat-form-field appearance="fill" class="w-100">
+                        <mat-date-range-input [min]="minDate" [max]="maxDate" (click)="picker.open()"
+                          [formGroup]="timerange" [rangePicker]="picker">
+                          <input matStartDate readonly formControlName="start" placeholder="Start date" />
+                          <input matEndDate readonly formControlName="end" placeholder="End date" />
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                      </mat-form-field>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row class="mb-2">
+                    <ion-col class="col-7 p-0">
+                      <ion-label>No of People</ion-label>
+                      <div class="dropdown">
+                        <button
+                          class="btn col-10 btn-secondary dropdown-toggle bg-white text-dark text-muted drp_btn text-left position-relative"
+                          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">
+                          Adults & Kids
+                          <ion-icon class="people_drp_icn" name="chevron-down-outline"></ion-icon>
+                        </button>
+                        <div class="dropdown-menu w-100 mt-0 p-0" aria-labelledby="dropdownMenuButton">
+                          <ul style="list-style: none" class="m-0 container-fluid">
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Adult(s)</ion-text>
+                                <ion-text class="d-block fnt-xs">(>12 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getadultsplus()"
+                                  [ngClass]="adultplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text>
+
+                                <span class="float-right nmbr">{{adultscount}}</span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getadultsminus()"
+                                  [ngClass]="adultminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Children</ion-text>
+                                <ion-text class="d-block fnt-xs">(2 to 12 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getchildrenplus()"
+                                  [ngClass]="childplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text><span class="float-right nmbr">{{childrencount}}</span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getchildrenminus()"
+                                  [ngClass]="childminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Infants(s)</ion-text>
+                                <ion-text class="d-block fnt-xs">(7 days to 2 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getinfantsplus()"
+                                  [ngClass]="inftplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text><span class="float-right nmbr">{{infantscount}}</span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getinfantsminus()"
+                                  [ngClass]="inftminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <!-- <li class="text-right mt-3 mb-2">
+                              <ion-text
+                                class="fnt-14 pr-3 font-weight-bold cursor-pointer clr-dtls"
+                                (click)="stp_prp($event)"
+                                (click)="resetclick()"
+                                >Reset</ion-text
+                              >
+                              <ion-text
+                                class="fnt-14 clr-prime font-weight-bold cursor-pointer"
+                                >Apply</ion-text
+                              >
+                            </li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <main class="mb-3">
+                    <!-- <ion-row class="mb-2">
+                      <span class="ActivePre ml-2 mt-3" [routerLink]="['activities-preference']">
+                        Activities Preference >>
+                      </span>
+                    </ion-row> -->
+                    <button class="button Forward position-absolute" (click)="navigatetotimeline()">
+                      <div class="row h-100">
+                        <div class="mx-auto my-auto">
+                          <img src="../../assets/images/rightarrow.png" class="arrowsize" />
+                        </div>
+                      </div>
+                    </button>
+                  </main>
+                </ion-card-content>
+                <!-- home card end !!-->
+
+                <!-- confirm card -->
+                <ion-card-content class="p-lr position-relative" *ngIf="showconformcard">
+                  <ion-row class="mb-2">
+                    <ion-col size="12">
+                      <p class="pStyle mb-1">From</p>
+                      <div class="position-relative">
+                        <ion-img class="formicon" [src]=" '../assets/images/Path 15407.svg' "></ion-img>
+                        <ion-input class="pl-4 borderline mr-3" ngDefaultControl
+                          value="{{confirmOrigincity.cityName}}, {{confirmOrigincity.countryName}} ({{confirmOrigincity.airportCode}})"
+                          readonly placeholder="Hyderabad, Telangana, India"></ion-input>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="mb-2" *ngFor="let destination of confirmDestinationcities; let i = index">
+                    <ion-col size="12">
+                      <p class="pStyle m-0">To</p>
+                      <div class="position-relative">
+                        <ion-img class="formicon" [src]=" '../assets/images/Path 15407.svg' "></ion-img>
+                        <button *ngIf="i != 0" class="formicon12" (click)="deletedestination(destination.id)">
+                          <ion-icon style="zoom: 2" name="remove-circle-outline"></ion-icon>
+                        </button>
+                        <button *ngIf="i == 0" class="formicon12"
+                          (click)="navigationConfirmDestinationToAddDestination()">
+                          <ion-icon style="zoom: 2" name="add-circle-outline"></ion-icon>
+                        </button>
+                        <ion-input type="text" ngDefaultControl class="pl-4 borderline"
+                          value="{{destination.cityName}}, {{destination.countryName}} ({{destination.airportCode}})"
+                          readonly placeholder="New York, USA">
+                        </ion-input>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="mb-2">
+                    <ion-col size="12">
+                      <p class="pStyle m-0">Duration</p>
+                      <mat-form-field appearance="fill" class="w-100">
+                        <mat-date-range-input (click)="picker.open()" [min]="minDate" [max]="maxDate"
+                          [rangePicker]="picker" [formGroup]="confirmdestinationDates">
+                          <input matStartDate formControlName="start" placeholder="Start date" />
+                          <input matEndDate formControlName="end" placeholder="End date" />
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                      </mat-form-field>
+                    </ion-col>
+                    <ion-col class="col-12 col-sm-7 p-0 mt-2">
+                      <ion-label>No Of People</ion-label>
+                      <div class="dropdown">
+                        <button
+                          class="btn col-10 btn-secondary dropdown-toggle bg-white text-dark text-muted drp_btn text-left position-relative"
+                          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">
+                          Adults & Kids
+                          <ion-icon class="people_drp_icn" name="chevron-down-outline"></ion-icon>
+                        </button>
+                        <div class="dropdown-menu w-100 mt-0 p-0" aria-labelledby="dropdownMenuButton">
+                          <ul style="list-style: none" class="m-0 container-fluid">
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Adult(s)</ion-text>
+                                <ion-text class="d-block fnt-xs">(>12 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getadultsplus()"
+                                  [ngClass]="adultplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text>
+                                <span class="float-right nmbr">{{adultscount}}</span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getadultsminus()"
+                                  [ngClass]="adultminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Children</ion-text>
+                                <ion-text class="d-block fnt-xs">(2 to 12 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getchildrenplus()"
+                                  [ngClass]="childplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text><span class="float-right nmbr">{{childrencount}}</span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getchildrenminus()"
+                                  [ngClass]="childminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <li class="p-2 row d-flex cursor-pointer" (click)="stp_prp($event)">
+                              <div class="d-inline position-relative">
+                                <ion-text class="fnt-14">Infants(s)</ion-text>
+                                <ion-text class="d-block fnt-xs">(7 days to 2 Years)</ion-text>
+                              </div>
+                              <div class="flex-grow-1 pt-1">
+                                <ion-text class="cursor-pointer float-right ml-1" (click)="getinfantsplus()"
+                                  [ngClass]="inftplus">
+                                  <ion-icon style="zoom: 1.5" name="add-circle-outline"></ion-icon>
+                                </ion-text><span class="float-right nmbr">{{infantscount}}
+                                </span>
+                                <ion-text class="cursor-pointer float-right mr-1" (click)="getinfantsminus()"
+                                  [ngClass]="inftminus">
+                                  <ion-icon style="zoom: 1.5" name="remove-circle-outline"></ion-icon>
+                                </ion-text>
+                              </div>
+                            </li>
+                            <!-- <li class="text-right mt-3 mb-2">
+                              <ion-text
+                                class="fnt-14 pr-3 font-weight-bold cursor-pointer clr-dtls"
+                                (click)="stp_prp($event)"
+                                (click)="resetclick()"
+                                >Reset</ion-text
+                              >
+                              <ion-text
+                                class="fnt-14 clr-prime font-weight-bold cursor-pointer"
+                                >Apply</ion-text
+                              >
+                            </li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+
+                  <main class="mb-3">
+                    <!-- <ion-row class="mb-2">
+                      <span class="ActivePre ml-2 mt-3" [routerLink]="['activities-preference']">
+                        Activities Preference >>
+                      </span>
+                    </ion-row> -->
+                    <button class="button Forward position-absolute"
+                      (click)="navigationConfirmDestinationToTimelinepage()">
+                      <div class="row h-100">
+                        <div class="mx-auto my-auto">
+                          <img src="../../assets/images/rightarrow.png" class="arrowsize" />
+                        </div>
+                      </div>
+                    </button>
+                  </main>
+                </ion-card-content>
+                <!-- confirm card end !!-->
+              </ion-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- float card  -->
+
+  <ion-grid class="mb-4 bacgroundcolortocrad hide_mobile">
+    <ion-card class="textstyle012 col-10 mx-auto">
+      <ion-row class="col-10 mx-auto my-auto">
+        <ion-col class="mt-5 mb-4 col-md-12 col-lg-8 col-xs-12 col-sm-12">
+          <ion-text>
+            <h1 class="textstyle123">
+              All your <br />
+              travel queries
+            </h1>
+            <h1 class="mb-5 textstyle234">ends here!</h1>
+            <p class="textstyle345">
+              FROM FLIGHT BOOKING TO DELICIOUS FOOD.<br />
+              FROM HOTEL BOOKING TO TRAVEL ACCESSORIES <br />
+              ALL IN ONE PLACE
+            </p>
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-md-12 col-lg-4 col-xs-12 col-sm-12 mx-auto my-auto">
+          <img class="logo12css" src="../assets/images/logo12.svg" />
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+  <div class="hide_mobile">
+    <div class="ion-text-center container">
+      <ion-note color="tertiary">
+        <h1>Perfect Holiday Plan</h1>
+      </ion-note>
+      <ion-text color="tertiary">
+        <p style="padding-left: 180px; padding-right: 180px">
+          A Voyaah will build a sense of superlative indulgence, right from the
+          word go. From curating an itinerary of your choice, which you can
+          choose from the experiences handcrafted for the traveler in you, leave
+          all the hard work to us.
+        </p>
+      </ion-text>
+    </div>
+    <!-- tour packges -->
+
+    <div class="container">
+      <div>
+        <div class="backButton" (click)="slidePre()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </div>
+        <div class="frwdButton" (click)="slideNex()">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+        <ion-slides [options]="slideOptsTwo">
+          <ion-slide *ngFor="let a of featuredPackeges" class="col-3">
+            <ion-card style="background: #fff; box-shadow: none" (click)="travellerPackagePreview(a.id)">
+              <img class="text-center image_size" src="{{ a.values.mainImage }}" alt="" />
+              <div class="carousel-caption carousel-cptn">
+                <span class="caption-name">
+                  <ion-icon name="star-outline"></ion-icon> Featured
+                </span>
+              </div>
+              <ion-card-content align="start" class="pl-1">
+                <ion-note color="tertiary">
+                  <span>
+                    <img style="width: 12px" src="../assets/images/Group 65838.svg" /> </span>&nbsp;
+                  <span class="opcity-stateName">
+                    {{ a.values.cityName }}, {{ a.values.countryName }}</span>
+                  <h3><b>{{ a.values.name }}</b></h3>
+                  <p>
+                    {{ a.values.numberOfNights }} days {{ a.values.numberOfDays
+                    }} nights
+                  </p>
+                  <h3><b>&#8377; {{ a.values.fare.totalFare }}/-</b></h3>
+                </ion-note>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </div>
+
+      <div>
+        <h2>Explore Destinations By Theme</h2>
+      </div>
+
+      <div class="backButton" (click)="slidePrev(exploreDestinationsCategory,slideWithNav3)">
+        <div class="prev-icon-custom custon-nav" [class.disabled]="exploreDestinationsCategory.isBeginningSlide">
+          <ion-icon name="arrow-back"></ion-icon>
+        </div>
+      </div>
+      <div class="frwdButton" (click)="slideNext(exploreDestinationsCategory,slideWithNav3)">
+        <div class="next-icon-custom custon-nav" [class.disabled]="exploreDestinationsCategory.isEndSlide">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+      </div>
+      <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav3>
+        <ion-slide *ngFor="let a of exploreDestinationsCategory" class="col-3">
+          <ion-card style="background: #fff; box-shadow: none" (click)="travellerPackagePreview(a.id)">
+            <img class="text-center image_size" src="{{ a.values.mainImage }}" alt="" />
+            <ion-card-content class="pl-1" align="start">
+              <ion-note color="tertiary">
+                <h3><b>{{a?.values?.category}}</b></h3>
+                <h4>{{a?.values?.category?.length}} packages</h4>
+              </ion-note>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+      <!-- <div *ngFor="let a of imagesPackages" class="col-3 p-1 float-left">
+        <ion-card style="background: #fff; box-shadow: none">
+          <img class="img-responsive" src="{{a.imageUrl}}" alt="" />
+          <ion-card-content class="pl-1">
+            <ion-note color="tertiary">
+              <h3><b>{{a.city}}</b></h3>
+              <p>{{a.packages}}</p>
+            </ion-note>
+          </ion-card-content>
+        </ion-card>
+      </div> -->
+      <div>
+        <h2>Explore Best Holidays Packages</h2>
+      </div>
+
+      <div class="backButton" (click)="slidePrev(bestValuePackeges,slideWithNav2)">
+        <div class="prev-icon-custom custon-nav" [class.disabled]="bestValuePackeges.isBeginningSlide">
+          <ion-icon name="arrow-back"></ion-icon>
+        </div>
+      </div>
+      <div class="frwdButton" (click)="slideNext(bestValuePackeges,slideWithNav2)">
+        <div class="next-icon-custom custon-nav" [class.disabled]="bestValuePackeges.isEndSlide">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+      </div>
+      <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
+        (ionSlideDidChange)="SlideDidChange(bestValuePackeges,slideWithNav2)">
+
+        <ion-slide *ngFor="let a of bestValuePackeges" class="col-3">
+          <ion-card style="background: #fff; box-shadow: none" (click)="travellerPackagePreview(a.id)">
+            <img class="text-center image_size" src="{{ a.values.mainImage }}" alt="" />
+            <ion-card-content align="start" class="pl-1">
+              <ion-note color="tertiary">
+                <span>
+                  <img style="width: 12px" src="../assets/images/Group 65838.svg" /> </span>&nbsp;
+                <span class="opcity-stateName">{{ a.values.cityName }}, {{ a.values.countryName }}</span>
+                <h3><b>{{ a.values.name }}</b></h3>
+                <p>
+                  {{ a.values.numberOfNights }} days {{ a.values.numberOfDays
+                  }} nights
+                </p>
+                <h3><b>&#8377; {{ a.values.fare.totalFare }}/-</b></h3>
+              </ion-note>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+
+    </div>
+  </div>
+
+  <!-- float Card  End -->
+
+  <img class="w-100 d-block mt-2 img-fluid" src="../assets/images/world.png" alt="world" />
+
+  <div class="hide_mobile">
+    <ion-col>
+      <div class="ion-text-center">
+        <ion-note class="font-size-stacations">Hand curated stacations</ion-note>
+      </div>
+    </ion-col>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="p-3 mt-3">
+          <div>
+            <ion-img src="../assets/images/Group 57645.png"></ion-img>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="showdiv">
+    <div class="ion-text-center">
+      <ion-note style="font-size: 20px">Stunning &nbsp;<ion-label color="tertiary"><b>Maldives</b></ion-label>
+      </ion-note>
+    </div>
+    <br />
+
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (7).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (17).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (21).png" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <br />
+
+  <div class="showdiv">
+    <div class="ion-text-center">
+      <ion-note style="font-size: 20px">Super &nbsp;<ion-label color="tertiary"> <b>Sydney</b></ion-label>
+      </ion-note>
+    </div>
+    <br />
+
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (17).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (21).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (7).png" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <br />
+
+  <div class="showdiv">
+    <div class="ion-text-center">
+      <ion-note style="font-size: 20px">Best &nbsp;<ion-label color="tertiary"><b>India</b></ion-label>
+      </ion-note>
+    </div>
+    <br />
+
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (21).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (17).png" />
+      </ion-slide>
+      <ion-slide>
+        <img src="../../../../assets/images/NoPath - Copy (7).png" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <br />
+  <!-- ---------------------All your travel queries----------------------- -->
+
+  <div class="showdiv">
+    <ion-card class="queriesCardBackground" style="background-color: #efe3e3">
+      <ion-ion-card-content>
+        <div class="ion-text-center">
+          <ion-img class="ml-2 imglogo" [src]=" '../assets/images/logo.svg' "></ion-img>
+          <hr />
+          <h1>All your travel queries</h1>
+          <h2>ends heres!</h2>
+          <ion-note color="tertiary">from flight booking to delicious food. from hotel booking to travel
+            accessories all in on place</ion-note>
+        </div>
+      </ion-ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- ---------------------circles-praneeth-end----------------------- -->
+
+  <ion-text class="textstyles897335 hide_mobile">
+    <p class="font-size-why text-center mt-5 mb-5">Why Choose Us</p>
+  </ion-text>
+
+  <!-- Middle card -->
+  <ion-grid class="mt-5 middlecard0234 hide_mobile">
+    <ion-row class="text-center">
+      <ion-col class="columnstyle23823">
+        <img class="imagestyles096" src="../assets/images/Group 26.svg" width="90px" height="80px" />
+        <p class="ptextstyle1023 mt-4">
+          AUTHENTIC AND <br />
+          RELAIBLE
+        </p>
+      </ion-col>
+      <ion-col class="columnstyle23823">
+        <img src="../assets/images/Group 27.svg" width="90px" height="80px" />
+        <p class="ptextstyle1023 mt-4">WORLD CLASS<br />SERVICES</p>
+      </ion-col>
+      <ion-col class="columnstyle23823">
+        <img src="../assets/images/Group 28.svg" width="90px" height="80px" />
+        <p class="ptextstyle1023 mt-4">OVER 10K HAPPY<br />CUSTOMERS</p>
+      </ion-col>
+      <ion-col class="columnstyle23823">
+        <img src="../assets/images/Holliday.svg" width="90px" height="80px" />
+        <p class="ptextstyle1023 mt-4">OVER 10K HAPPY<br />CUSTOMERS</p>
+      </ion-col>
+      <ion-col class="columnstyle23823">
+        <img src="../assets/images/Group 30.svg" width="90px" height="80px" />
+        <p class="ptextstyle1023 mt-4">TOP RATED AGENTS<br />AND ADVISORS</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer class="ion-no-border hide_mobile border-none">
+    <ion-card class="ion-card-footer">
+      <ion-grid>
+        <ion-row class="footer1 col-10 mx-auto">
+          <ion-col class="col-md-6 col-lg-8 middle_foot1">
+            <ion-img class="size-image" src="../assets/images/logo12.svg"></ion-img>
+            <div class="mt-3">
+              <ion-row>
+                <ion-col class="col-5">
+                  <h4 class="footer_card">ABOUT US</h4>
+                </ion-col>
+                <ion-col class="col-5">
+                  <h4 class="footer_card">Tailor made Trips</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="col-6">
+                  <h4 class="footer_card">SERVICE</h4>
+                </ion-col>
+                <ion-col class="col-6">
+                  <h4 class="footer_card"></h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="col-6">
+                  <h4 class="footer_card">BLOG</h4>
+                </ion-col>
+                <ion-col class="col-6">
+                  <h4 class="footer_card"></h4>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col class="mb-4 col-12 col-md-6 col-lg-4 middle_foot">
+            <ion-row>
+              <ion-col>
+                <ion-img src="../assets/images/Vk.svg" class="proper img-fluid"></ion-img>
+              </ion-col>
+              <ion-col>
+                <ion-img src="../assets/images/Pinterest.svg" class="proper img-fluid"></ion-img>
+              </ion-col>
+              <ion-col>
+                <ion-img src="../assets/images/Shape.svg" class="proper img-fluid"></ion-img>
+              </ion-col>
+              <ion-col>
+                <ion-img src="../assets/images/Twitter.svg" class="proper img-fluid"></ion-img>
+              </ion-col>
+              <ion-col>
+                <ion-img src="../assets/images/Facebook.svg" class="proper img-fluid"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-footer>
+</ion-content>

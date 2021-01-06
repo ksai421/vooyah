@@ -1,0 +1,712 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateAwsCurrentItineraryModel($owner: String) {
+  onCreateAWSCurrentItineraryModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateAwsCurrentItineraryModel($owner: String) {
+  onUpdateAWSCurrentItineraryModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteAwsCurrentItineraryModel($owner: String) {
+  onDeleteAWSCurrentItineraryModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateAwsUserProfileModel($owner: String) {
+  onCreateAWSUserProfileModel(owner: $owner) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateAwsUserProfileModel($owner: String) {
+  onUpdateAWSUserProfileModel(owner: $owner) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteAwsUserProfileModel($owner: String) {
+  onDeleteAWSUserProfileModel(owner: $owner) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateAwsTravelPackage {
+  onCreateAWSTravelPackage {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAwsTravelPackage {
+  onUpdateAWSTravelPackage {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAwsTravelPackage {
+  onDeleteAWSTravelPackage {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateAwsTrawexSettingsModel {
+  onCreateAWSTrawexSettingsModel {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAwsTrawexSettingsModel {
+  onUpdateAWSTrawexSettingsModel {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAwsTrawexSettingsModel {
+  onDeleteAWSTrawexSettingsModel {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateAwsMusementSettingsModel {
+  onCreateAWSMusementSettingsModel {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAwsMusementSettingsModel {
+  onUpdateAWSMusementSettingsModel {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAwsMusementSettingsModel {
+  onDeleteAWSMusementSettingsModel {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateAwsTransactionModel($owner: String) {
+  onCreateAWSTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateAwsTransactionModel($owner: String) {
+  onUpdateAWSTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteAwsTransactionModel($owner: String) {
+  onDeleteAWSTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateAwsStaycationTransactionModel($owner: String) {
+  onCreateAWSStaycationTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateAwsStaycationTransactionModel($owner: String) {
+  onUpdateAWSStaycationTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteAwsStaycationTransactionModel($owner: String) {
+  onDeleteAWSStaycationTransactionModel(owner: $owner) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}

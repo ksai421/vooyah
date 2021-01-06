@@ -1,0 +1,600 @@
+<ion-content class="bg-white">
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div *ngIf="!staycationPreviewData">
+          <img
+            style="width: 100%; height: 320px; background-size: auto"
+            src="../assets/images/NoPath - Copy (76).png"
+          />
+        </div>
+
+        <div *ngIf="staycationPreviewData">
+          <img
+            style="width: 100%; height: 320px; background-size: auto"
+            src="{{ staycationPreviewData.values.mainImage }}"
+          />
+        </div>
+
+        <div class="carousel-caption carousel-cptn" style="right: 10px">
+          <h1>{{ staycationPreviewData?.values?.name }}</h1>
+        </div>
+        <!-- Navtabs -->
+        <div class="carousel-caption nav-tabs-mobile-view">
+          <ul
+            class="nav nav-tabs justify-content-start"
+            id="myTab"
+            role="tablist"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="information-tab"
+                data-toggle="tab"
+                href="#information"
+                role="tab"
+                aria-controls="information"
+                aria-selected="true"
+                >Overview
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="showTourPlan">
+              <a
+                class="nav-link"
+                id="tour-plan-tab"
+                data-toggle="tab"
+                href="#tour-plan"
+                role="tab"
+                aria-controls="tour-plan"
+                aria-selected="false"
+                >Tour Plan
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="showLocation">
+              <a
+                class="nav-link"
+                id="location-tab"
+                data-toggle="tab"
+                href="#location"
+                role="tab"
+                aria-controls="location"
+                aria-selected="false"
+                >Location
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="gallery-tab"
+                data-toggle="tab"
+                href="#gallery"
+                role="tab"
+                aria-controls="gallery"
+                aria-selected="false"
+              >
+                Gallery</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="8" size-sm="12" size-xs="12" col-lg="8" col-xl="8">
+          <div>
+            <div class="tab-content" id="myTabContent">
+              <!-- information -->
+              <div
+                class="tab-pane fade show active"
+                id="information"
+                role="tabpanel"
+                aria-labelledby="information-tab"
+              >
+                <div>
+                  <br />
+                  <ion-text color="tertiary" class="mt-2">
+                    <h2>{{ staycationPreviewData?.values?.name }}</h2>
+                  </ion-text>
+                  <ion-label color="tertiary">
+                    <p>
+                      {{ staycationPreviewData?.values?.description }}
+                    </p>
+                  </ion-label>
+                </div>
+
+                <ion-card style="background-color: #efe3e3; box-shadow: none">
+                  <ion-card-content>
+                    <ion-row>
+                      <ion-col>
+                        <div class="image2">
+                          <img
+                            width="25px"
+                            src="../assets/images/time (1).svg"
+                          />
+                        </div>
+                        <div class="image2 text-font-size mt-2">
+                          &nbsp;
+                          <ion-note color="tertiary">
+                            <h5>
+                              {{ staycationPreviewData?.values?.numberOfDays }}
+                              Days &
+                              {{
+                                staycationPreviewData?.values?.numberOfNights
+                              }}
+                              Nights
+                            </h5>
+                          </ion-note>
+                        </div>
+                      </ion-col>
+                      <!-- <ion-col>
+                        <div class="image2">
+                          <img
+                            width="18px"
+                            src="../assets/images/Group 65837.svg"
+                          />
+                        </div>
+                        <div class="image2 text-font-size mt-2">
+                          <ion-note color="tertiary">
+                            <h5>18+age</h5>
+                          </ion-note>
+                        </div>
+                      </ion-col> -->
+                      <ion-col>
+                        <div class="image2">
+                          <img
+                            width="18px"
+                            src="../assets/images/Group 65838.svg"
+                          />
+                        </div>
+                        <div class="image2 text-font-size mt-2" align="center">
+                          <ion-note color="tertiary">
+                            <h5>
+                              {{ staycationPreviewData?.values?.name }}
+                            </h5>
+                          </ion-note>
+                        </div>
+                      </ion-col>
+
+                      <ion-col>
+                        <div class="image2">
+                          <img
+                            width="18px"
+                            src="../assets/images/Group 65839.svg"
+                          />
+                        </div>
+                        <div class="image2 text-font-size mt-2">
+                          <ion-note color="tertiary">
+                            <h5>Best Deals</h5>
+                          </ion-note>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card-content> </ion-card
+                ><br />
+                <div>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Destination</th>
+                        <td>{{ staycationPreviewData?.values?.name }}</td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Category</th>
+                        <td>
+                          {{ staycationPreviewData?.values?.category }}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Inclusions</th>
+                        <div>
+                          <!-- <td>
+                            <ion-icon name="heart" width="3px"></ion-icon>&nbsp;
+                            {{ inclusion }}
+                          </td> -->
+                          <td>
+                            <ion-row>
+                              <ion-col
+                                size="6"
+                                *ngFor="
+                                  let inclusion of staycationPreviewData?.values
+                                    ?.inclusions
+                                "
+                              >
+                                <div class="p-1">
+                                  <ion-icon name="heart" width="3px"></ion-icon
+                                  >&nbsp; {{ inclusion }}
+                                </div>
+                              </ion-col>
+                            </ion-row>
+                          </td>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- tour-plan -->
+              <div
+                class="tab-pane fade"
+                id="tour-plan"
+                role="tabpanel"
+                aria-labelledby="tour-plan-tab"
+              >
+                <div
+                  class="text-theming-color mt-3"
+                  *ngFor="
+                    let a of staycationPreviewData?.values?.activities;
+                    let p = index
+                  "
+                >
+                  <div>
+                    <h2 class="bg-color">{{ p + 1 }}</h2>
+                  </div>
+
+                  <div style="margin-top: -40px">
+                    <span class="v2-content"
+                      ><b>Day {{ p + 1 }}</b
+                      >&nbsp;&nbsp;<ion-text>{{ a.title }}</ion-text></span
+                    >
+                  </div>
+                  <br />
+                  <div class="vertical1">
+                    <p class="v2-content">{{ a.description }}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- location -->
+              <div
+                class="tab-pane fade"
+                id="location"
+                role="tabpanel"
+                aria-labelledby="location-tab"
+              >
+                <div class="text-theming-color mt-3">
+                  <ion-text>
+                    <h2>Toure Location</h2>
+                  </ion-text>
+                  <div>
+                    <ion-img src="../assets/images/Capture.png"> </ion-img>
+                  </div>
+                  <br />
+                  <div>
+                    <ion-text>
+                      <h2>History Of The City</h2>
+                    </ion-text>
+                    <p>
+                      Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                      tellus. Phasellus viverra nulla ut metus varius laoreet.
+                      Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
+                      augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+                      Etiam
+                    </p>
+                  </div>
+                </div>
+                <br />
+
+                <div
+                  class="text-theming-color"
+                  data-toggle="modal"
+                  data-target="#locationModal"
+                >
+                  <span>
+                    <img width="20px" src="../assets/images/Group 65853.svg"
+                  /></span>
+                  &nbsp;
+                  <span><b>Click here to view Terms&Conditions</b></span>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="gallery"
+                role="tabpanel"
+                aria-labelledby="gallery-tab"
+              >
+                <!-- gallery -->
+
+                <div class="text-theming-color mt-3">
+                  <ion-text>
+                    <h2>Make Your Own Memories</h2>
+                  </ion-text>
+                  <ion-row>
+                    <ion-col
+                      class="pb-1 pr-1"
+                      size="6"
+                      *ngFor="
+                        let a of staycationPreviewData?.values?.additionalImages
+                      "
+                    >
+                      <div>
+                        <ion-img src="{{ a }}"> </ion-img>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <!-- Book Now -->
+        <ion-col size-md="4" size-sm="12" size-xs="12" col-lg="4" col-xl="4">
+          <div class="container" style="width: 270px">
+            <ion-card-header color="tertiary" class="p-3">
+              {{ staycationPreviewData?.values?.fare?.totalFare }}
+              <ion-note>
+                <h6 style="color: #ffffff">
+                  {{ staycationPreviewData?.values?.numberOfDays }} days{{
+                    staycationPreviewData?.values?.numberOfNights
+                  }}
+                  Nights
+                </h6>
+              </ion-note>
+            </ion-card-header>
+
+            <form>
+              <div class="text-color1">
+                <ul class="list-group list-group-flush" *ngIf="stayCationTravellersDetails?.adults.length+stayCationTravellersDetails?.children.length+stayCationTravellersDetails?.infants.length==0">
+                  <li class="list-group-item d-flex">
+                    <ion-label>Date</ion-label>
+                    <ion-input
+                      type="date"
+                      style="margin-left: -40px; margin-top: 21px"
+                    ></ion-input>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <ion-label
+                      >Adults
+                      <h5>Age 18+</h5>
+                    </ion-label>
+                    <ion-icon
+                      class="icons-blod" [ngClass]="(adultscount==staycationPreviewData?.values?.travellers?.minAdults)?'desabled_display':''"
+                      name="remove-outline" (click)="adultCountChange('decrease')"
+                    ></ion-icon>
+                    <span class="">{{
+                      adultscount
+                    }}</span>
+                    <ion-icon class="icons-blod" [ngClass]="(adultscount==staycationPreviewData?.values?.travellers?.maxAdults)?'desabled_display':''" name="add-outline" (click)="adultCountChange('increase')"></ion-icon>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <ion-label
+                      >Children
+                      <h5>Age 6-17</h5>
+                    </ion-label>
+                    <ion-icon
+                      name="remove-outline"  [ngClass]="(childrencount==staycationPreviewData?.values?.travellers?.minChildren)?'desabled_display':''"
+                      class="icons-blod" (click)="childCountChange('decrease')"
+                    ></ion-icon>
+                    <span class="">{{
+                      childrencount
+                    }}</span>
+                    <ion-icon name="add-outline" [ngClass]="(childrencount==staycationPreviewData?.values?.travellers?.maxChildren)?'desabled_display':''" class="icons-blod" (click)="childCountChange('increase')"></ion-icon>
+                  </li>
+                  <!-- <li class="list-group-item d-flex justify-content-between">
+                    <ion-label
+                      >Infant
+                      <h5>Age 0-5</h5>
+                    </ion-label>
+                    <ion-icon
+                      name="remove-outline"
+                      class="icons-blod" (click)="infantCountChange('decrease')"
+                    ></ion-icon>
+                    <span class="">{{ infantscount }}</span>
+                    <ion-icon
+                      name="add-outline"
+                      class="icons-blod" (click)="infantCountChange('increase')"
+                    ></ion-icon>
+                  </li> -->
+                </ul>
+                <div class="no-gutters"
+                *ngIf="stayCationTravellersDetails?.adults.length+stayCationTravellersDetails?.children.length+stayCationTravellersDetails?.infants.length>0">
+                <ion-text class="itenary_header">
+                  Passenger Details
+                </ion-text>
+                <ion-row>
+                  <ion-col class="col-1 col-lg-1 position-relative p-0">
+                  </ion-col>
+                  <ion-col class="col-11 col-lg-11 p-0">
+                    <ion-text class="position-relative passenger_name mr-3 d-block" *ngFor="let name of stayCationTravellersDetails.adults">
+                      <ion-icon name="person-circle-outline" class="icon_profile"></ion-icon>{{name.firstName}}
+                    </ion-text>
+                    <ion-text class="position-relative passenger_name mr-3 d-block" *ngFor="let name of stayCationTravellersDetails.children">
+                      <ion-icon name="person-circle-outline" class="icon_profile"></ion-icon>{{name.firstName}}
+                    </ion-text>
+                    <ion-text class="position-relative passenger_name mr-3 d-block" *ngFor="let name of stayCationTravellersDetails.infants">
+                      <ion-icon name="person-circle-outline" class="icon_profile"></ion-icon>{{name.firstName}}
+                    </ion-text>
+                    <button class="btn book_btn" (click)="gototravellers()">
+                      Edit
+                    </button>
+                  </ion-col>
+                </ion-row>
+              </div>
+                <div class="ion-text-center mt-2">
+                  <ion-button color="tertiary" shape="round" (click)="processBooking()"
+                    >Book Now</ion-button
+                  >
+                </div>
+              </div>
+            </form>
+            <br />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <br />
+    <!-- view Terms & Conditions -->
+    <div class="text-theming-color" data-toggle="modal" data-target="#modal">
+      <span> <img width="20px" src="../assets/images/Group 65853.svg" /></span>
+      &nbsp;
+      <span><b>Click here to view Terms & Conditions</b></span>
+    </div>
+    <!-- Modal  window-->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title text-theming-color" id="exampleModalLabel">
+              Terms & Conditions
+            </h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="text-theming-color">
+              <h3><b>Booking Validity</b></h3>
+              <p>
+                {{ staycationPreviewData?.values?.bookingValidity }}
+              </p>
+              <h3><b>Blackout Dates</b></h3>
+              <p *ngFor="let a of staycationPreviewData?.values?.blackoutDates">
+                {{ a.note }}
+              </p>
+              <h3><b>Child Policy</b></h3>
+              <p>
+                {{
+                  staycationPreviewData?.values?.cancellation?.childPolicyNote
+                }}
+              </p>
+              <h3><b>Reschedule Policy:</b></h3>
+              <p>
+                {{
+                  staycationPreviewData?.values?.reschedulePolicy?.specialNote
+                }}
+              </p>
+              <h3><b>Cancellation Policy:</b></h3>
+              <p>
+                {{ staycationPreviewData?.values?.cancellation?.specialNote }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <br />
+  </div>
+  <!-- footer -->
+  <ion-footer class="ion-no-border">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="ion-card-footer">
+            <ion-grid>
+              <ion-row class="footer1 col-10 mx-auto">
+                <ion-col class="col-12 col-md-6 col-lg-8 middle_foot1">
+                  <ion-img
+                    class="size-image"
+                    src="../assets/images/logo12.svg"
+                  ></ion-img>
+                  <div class="mt-3">
+                    <ion-row>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card">ABOUT US</h5>
+                      </ion-col>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card">Tailor made Trips</h5>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card">SERVICE</h5>
+                      </ion-col>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card"></h5>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card">BLOG</h5>
+                      </ion-col>
+                      <ion-col class="col-6">
+                        <h5 class="footer_card"></h5>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+                </ion-col>
+                <ion-col class="mb-4 col-12 col-md-6 col-lg-4 middle_foot">
+                  <ion-row>
+                    <ion-col>
+                      <div>
+                        <ion-img
+                          src="../assets/images/Vk.svg"
+                          class="proper"
+                        ></ion-img>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div>
+                        <ion-img
+                          src="../assets/images/Pinterest.svg"
+                          class="proper"
+                        ></ion-img>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div>
+                        <ion-img
+                          src="../assets/images/Shape.svg"
+                          class="proper"
+                        ></ion-img>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div>
+                        <ion-img
+                          src="../assets/images/Twitter.svg"
+                          class="proper"
+                        ></ion-img>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div>
+                        <ion-img
+                          src="../assets/images/Facebook.svg"
+                          class="proper"
+                        ></ion-img>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+</ion-content>
+<div class="loading-block col-12" *ngIf="isLoading">
+  <div class="text-center">
+    <img class="loader-image" src="../../../assets/images/logo.svg" alt="Voyaah Logo" />
+  </div>
+  <div class="message text-center">
+    Redirecting to payment gateway...
+  </div>
+  <div class="mx-auto preloader">
+    <i>.</i>
+    <i>.</i>
+    <i>.</i>
+  </div>
+</div>

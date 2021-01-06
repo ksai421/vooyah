@@ -1,0 +1,352 @@
+$primary-color: #265359;
+// @font-face {
+//   font-family: 'AzoSans-Bold';
+//   src: url('../../assets/dist/font/AzoSans-Bold.ttf');
+//   }
+#home_main {
+  --max-width: 230px !important;
+}
+.color1 {
+  color: $primary-color;
+}
+.userIcon {
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.user_name {
+  padding: 20px 30px 20px 30px;
+}
+.user_drop {
+  top: -5px !important;
+  // left: -24px !important;
+  border-radius: 0 0 0 20px !important;
+  min-width: 130px !important;
+  a {
+    font-size: 14px;
+    color: $primary-color;
+    border-bottom: 0.5px solid #00000029;
+    img {
+      height: 11px;
+    }
+  }
+  a:last-child {
+    border: none;
+  }
+}
+.firstnav {
+  background-color: $primary-color;
+  color: #ffffff;
+}
+.lg_nav {
+  a {
+    position: relative;
+    font-size: 14px;
+  }
+  a.active {
+    color: $primary-color;
+    font-weight: 600;
+  }
+  .active::after {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    bottom: 10px;
+    right: 50%;
+    border-radius: 50%;
+    transform: translateX(50%);
+    background-color: #265359;
+    border: none;
+    outline: none;
+  }
+}
+.fontsize12 {
+  font-size: 0.75rem;
+  color: #ffffff;
+  .imgthumbnail {
+    opacity: 1;
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.9rem;
+    padding-top: 0.2rem;
+  }
+}
+
+.cust_z {
+  z-index: 1021;
+  --max-width: 230px !important;
+}
+.home_ul {
+  list-style: none;
+  li {
+    cursor: pointer;
+    margin: 0 10px 0 20px;
+    border-bottom: 1px solid gainsboro;
+    padding: 10px 0 10px 0;
+    font-size: 18px;
+    a {
+      color: #000000;
+      cursor: pointer;
+    }
+    a.active {
+      color: $primary-color;
+      font-weight: 600;
+    }
+    a:focus {
+      border: none;
+      text-decoration: none;
+    }
+    a:hover {
+      cursor: pointer;
+    }
+  }
+}
+.menu_btn {
+  display: inline-block;
+  font-size: 30px;
+  margin: 15px 0 0 10px;
+  cursor: pointer;
+}
+
+.btnwidth {
+  // width: 14rem;
+  background: $primary-color !important ;
+  color: #ffffff;
+  border-radius: 20px !important;
+  padding: 0.3rem !important;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+}
+
+.curser12 {
+  cursor: pointer;
+  color: #707070 !important;
+}
+
+.textsize {
+  color: #707070;
+  opacity: 1;
+  margin-left: -1.4rem;
+}
+
+header {
+  // overflow: hidden;
+  background: #ffffff;
+}
+
+header a,
+header label {
+  display: block;
+  // padding: 20px;
+  color: #000000;
+  text-decoration: none;
+  // line-height: 20px;
+  //  vertical-align: middle;
+}
+
+header a:hover,
+header label:hover {
+  color: #265359;
+}
+
+// header label {
+//   float: right;
+//   // padding: 18px 20px;
+//   cursor: pointer;
+// }
+
+// header label:after {
+//   content: "\2261";
+//   font-size: 2.8em;
+//   margin-right: 1rem !important;
+// }
+
+.logo {
+  float: left;
+  .imglogo {
+    top: 1rem;
+    // width: 5.5rem;
+    height: 40px;
+    margin: 10px 0 10px 0;
+  }
+}
+.images_background {
+  height: 70px;
+  width: 78px;
+  background: var(--ion-color-tertiary);
+  padding: 20px;
+  border-radius: 14px;
+  margin-left: 20px;
+}
+
+nav {
+  float: right;
+  max-height: 0;
+  width: 100%;
+  -webkit-transition: max-height 0.3s;
+  -moz-transition: max-height 0.3s;
+  -o-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  //  padding-bottom: 10px;
+}
+
+nav li {
+  display: block;
+  text-align: center;
+}
+
+nav a {
+  padding: 10px;
+  width: 100%;
+}
+
+#nav {
+  display: none;
+}
+
+#nav:checked ~ nav {
+  max-height: 272px; /* This can be anything bigger than your nav height. The transition duration works with this */
+}
+
+// @media only screen and (min-width: 991px) {
+header label {
+  display: none;
+}
+.menu_btn {
+  display: none;
+}
+nav {
+  width: auto;
+  max-height: none;
+}
+
+nav ul {
+  padding: 0;
+  padding-right: 10px;
+}
+
+nav li {
+  display: inline-block;
+  text-align: left;
+}
+
+header nav a {
+  display: inline-block;
+  padding: 20px 0px;
+  width: auto;
+}
+// }
+//@media (max-width: 990px) {
+// .home_menu {
+//   display: none;
+// }
+
+// .logo {
+//   float: left;
+//   .imglogo {
+//     top: 1rem;
+//     // width: 5.5rem;
+//     height: 40px;
+//     margin: 10px 0;
+//   }
+// }
+
+.showdiv {
+  display: none;
+  box-shadow: none;
+}
+.list-content {
+  background-color: #fbfaf8;
+  padding-top: 20px;
+}
+ion-button {
+  text-transform: none;
+}
+.button-container:not(:last-child) {
+  border-right: 1.5px solid #ddd;
+}
+.signup-btn-color {
+  color: #707070;
+  font-weight: bold;
+}
+.shadow {
+  border-bottom: 1px solid #00000029;
+}
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .showdiv {
+    display: block;
+  }
+}
+.hide_mobile {
+  display: block;
+}
+@media screen and (min-width: 0px) and (max-width: 576px) {
+  .hide_mobile {
+    display: none;
+  }
+}
+
+// @media (min-width: 320px) {
+//   li {
+//     background: $primary-color !important ;
+//     border-radius: 15px;
+//     padding: 10px;
+//     text-align: center;
+//     margin: 5px;
+//   }
+//   header a,
+//   header label {
+//     display: block;
+//     // padding: 20px;
+//     color: #ffff;
+//     text-decoration: none;
+//     // line-height: 20px;
+//     //  vertical-align: middle;
+//   }
+// }
+.loginPage .modal-wrapper.sc-ion-modal-md {
+  color: #265359;
+}
+@media (min-width: 320px) {
+  .menu_btn {
+    display: none;
+  }
+}
+
+.button-inner{
+  margin-bottom: 7px;
+}
+
+// ion-button.active.select,
+// ion-button:active.select {
+//   color: #fff;
+//   background-color: #5cb85c;
+//   border-color: #5cb85c;
+//   outline: none;
+// }
+.btn::selection.active{
+  background: #265359;
+  border-radius: 15px;
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.btn:focus{
+  background: #265359;
+  border-radius: 15px;
+}
+// @media only screen and (min-height: 1400px) and (min-width: 1400px) {
+//   .sc-ion-modal-md-h {
+//     --height: 319px !important;
+//   }
+// }

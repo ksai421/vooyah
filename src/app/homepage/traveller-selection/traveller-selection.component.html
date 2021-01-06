@@ -1,0 +1,79 @@
+
+<div class="main_div">
+  <ion-text class="primary_header d-block">Traveller Information</ion-text>
+  <ion-text class="travellers_count d-block pt-2 pb-4">{{homeSelectedCount.adultCount}} adult<ion-text *ngIf="homeSelectedCount.childCount>0"> , {{homeSelectedCount.childCount}} children </ion-text><ion-text *ngIf="homeSelectedCount.infantCount>0"> & {{homeSelectedCount.infantCount}} infant </ion-text></ion-text>
+  <div class="row no-gutters accordion" id="accordion">
+    <div class="col-lg-8">
+      <div>
+        <form [formGroup]="dynamicForm">
+
+          <div formArrayName="adultsInput" >
+            <div *ngFor="let city of adultsInput.controls; index as i" class="pb-4 position-relative wrapper_div">
+              <ion-text class="primary_header_small">Adult - {{i+1}}</ion-text>
+              <div class="position-relative no-gutters">
+                <ion-icon name="caret-down-sharp" class="chiv_down cursor-pointer"></ion-icon>
+              <input readonly class="cursor-pointer form-control input_box collapsed" placeholder="Select Adult" [formControlName]="i" data-toggle="collapse" [attr.data-target]="'#adultCollapse-' + i" [attr.aria-controls]="'adultCollapse-' + i" [ngClass]="{ 'is-invalid':getValidity(i,'adult') && submitted }">
+            </div>
+              <div [attr.id]="'adultCollapse-' + i" data-parent="#accordion" class="collapse bg-white w-100 position-absolute drop_down_div">
+                <div class="p_custom">
+                <span class="cursor-pointer add" (click)="presentPopover($event,'adult')">+ Add Adult</span>
+                <div class="no-gutters"  *ngFor="let adult of adults; index as a">
+                <span class="d-block text-dark cursor-pointer pt-2 pb-2 drop_values" *ngIf="adultDisplay[a]" (click)="adultSelect(adult,i,a)">{{adult.firstName}}</span>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="childrenInput">
+            <div *ngFor="let city of childrenInput.controls; index as i" class="pb-4 position-relative wrapper_div">
+              <ion-text class="primary_header_small">Child - {{i+1}}</ion-text>
+              <div class="position-relative no-gutters">
+                <ion-icon name="caret-down-sharp" class="chiv_down cursor-pointer"></ion-icon>
+              <input readonly class="cursor-pointer form-control input_box collapsed" placeholder="Select Children" [formControlName]="i" data-toggle="collapse" [attr.data-target]="'#childrenCollapse-' + i" [attr.aria-controls]="'childrenCollapse-' + i" [ngClass]="{ 'is-invalid':getValidity(i,'child') && submitted }">
+              </div>
+              <div [attr.id]="'childrenCollapse-' + i" data-parent="#accordion" class="collapse bg-white w-100 position-absolute drop_down_div">
+                <div class="p_custom">
+                <span class="cursor-pointer add" (click)="presentPopover($event,'child')">+ Add Child</span>
+                <div class="no-gutters"  *ngFor="let child of children; index as c">
+                <span class="d-block text-dark cursor-pointer pt-2 pb-2 drop_values" *ngIf="childDisplay[c]"  (click)="childSelect(child,i,c)">{{child.firstName}}</span>
+                </div>
+              </div>
+              </div>
+              <!-- <select [formControlName]="i" placeholder="children" class="form-control">
+                <option value="">Select Children</option>
+                <option *ngFor="let child of children">{{child.firstName}}</option>
+            </select> -->
+            </div>
+          </div>
+          <div formArrayName="infantsInput">
+            <div *ngFor="let city of infantsInput.controls; index as i" class="pb-4 position-relative wrapper_div">
+              <ion-text class="primary_header_small">Infant - {{i+1}}</ion-text>
+              <div class="position-relative no-gutters">
+                <ion-icon name="caret-down-sharp" class="chiv_down cursor-pointer"></ion-icon>
+                <input readonly class="cursor-pointer form-control input_box collapsed" placeholder="Select Infants" [formControlName]="i" data-toggle="collapse" [attr.data-target]="'#infantCollapse-' + i" [attr.aria-controls]="'infantCollapse-' + i" [ngClass]="{ 'is-invalid':getValidity(i,'infant') && submitted }">
+              </div>
+              <div [attr.id]="'infantCollapse-' + i" data-parent="#accordion" class="collapse bg-white w-100 position-absolute drop_down_div">
+                <div class="p_custom">
+                <span class="cursor-pointer add" (click)="presentPopover($event,'infant')">+ Add Infant</span>
+                <div class="no-gutters" *ngFor="let infant of infants; index as inf">
+                <span class="d-block text-dark cursor-pointer pt-2 pb-2 drop_values" *ngIf="infantDisplay[inf]" (click)="infantSelect(infant,i,inf)">{{infant.firstName}}</span>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="text-right wrapper_div">
+        <!-- <ion-text class="go_back pr-3 cursor-pointer" [routerLink]="['/preview']">
+          go back
+        </ion-text> -->
+        <button class="btn book_btn" (click)="onSubmit()">
+          Proceed to Payment
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

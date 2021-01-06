@@ -1,0 +1,37 @@
+
+<div class="card_pad">
+   <ion-title  class="form_title1 mb-3">
+      Enter Email </ion-title
+    >
+  <div class="closeBtn">
+    <ion-buttons>
+      <ion-button color="black" (click)="closeModal()">
+        <i class="fal fa-times-circle fa-lg"></i>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+    <form
+      (ngSubmit)="onSubmitEmail()"
+      [formGroup]="emailForm"
+    >
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control borderlineLogin"
+        [ngClass]="{ 'is-invalid': submitted && v.username.errors }"
+        placeholder="Email Or Mobile Number"
+      />
+      <!-- <p>{{ v.username.errors }}</p> -->
+      <div *ngIf="submitted && v.username.errors" class="invalid-feedback">
+        <div *ngIf="v.username.errors.required">
+          Email Or Mobile Number is required
+        </div>
+        <div *ngIf="v.username.errors.pattern">Email should be valid (or) mobile number required country
+          code(+9177777777777)</div>
+      </div>
+       <h4  *ngIf="invalidUser" class=" invalidEmail mt-1">{{errorMsg.message}}</h4>
+
+      <button class="text-white save-button-styles btn mt-2">Submit</button>
+    </form>
+  </div>

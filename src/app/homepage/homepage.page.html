@@ -1,0 +1,348 @@
+<ion-menu side="start" menuId="hm_menu" contentId="home_main" class="cust_z">
+  <ion-col>
+    <ion-header class="bg-white">
+      <ion-toolbar color="grey">
+        <ion-title class="ml-3" *ngIf="!loginModelStatus">
+          <ion-icon
+            name="person-circle-outline"
+            class="userIcon color1"
+          ></ion-icon>
+          <ion-text class="user_name"> {{infoMessage}} </ion-text>
+        </ion-title>
+        <ion-title
+          *ngIf="loginModelStatus"
+          class="ml-3 color1 font-weight-bold"
+        >
+          <ion-text (click)="menu_click();presentLogin();">Login</ion-text>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="bg-white">
+      <ul class="home_ul">
+        <li>
+          <a
+            class="mr-5"
+            [routerLink]="['']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            (click)="menu_click()"
+            >Home</a
+          >
+        </li>
+        <li *ngIf="!loginModelStatus">
+          <a
+            class="mr-5"
+            [routerLink]="['/myaccount/profile']"
+            routerLinkActive="active"
+            (click)="menu_click()"
+            >My Account</a
+          >
+        </li>
+        <li>
+          <a
+            class="mr-5"
+            [routerLink]="['/about-us']"
+            routerLinkActive="active"
+            (click)="menu_click()"
+            >About us</a
+          >
+        </li>
+        <li>
+          <a
+            class="mr-5"
+            [routerLink]="['/staycation']"
+            routerLinkActive="active"
+            (click)="menu_click()"
+            >Staycation</a
+          >
+        </li>
+
+
+
+        <!-- <li *ngIf="loginModelStatus">
+        <a class="mr-5"  href="#" (click)="menu_click();presentModal();">Login</a>
+      </li> -->
+        <li *ngIf="!loginModelStatus">
+          <a
+            class="mr-5"
+            routerLinkActive="active"
+            (click)="menu_click();clearUser()"
+            >Sign Out</a
+          >
+        </li>
+      </ul>
+    </ion-content>
+  </ion-col>
+</ion-menu>
+
+<ion-header class="p-0 sticky-top bg-white">
+  <ion-header class="navbar firstnav p-1 hide_mobile">
+    <div class="d-flex justify-content-end">
+      <a
+        class="mr-sm-5 mr-5 font-weight-light fontsize12"
+        href="tel:+91-882-800-4809"
+      >
+        <ion-img
+          class="imgthumbnail"
+          [src]=" '../assets/images/Call.svg' "
+        ></ion-img>
+        +91-882-800-4809
+      </a>
+      <a
+        class="my-0 my-sm-0 mr-5 font-weight-light fontsize12"
+        href="mailto:info@voyaah.com"
+      >
+        <ion-img
+          class="imgthumbnail"
+          [src]=" '../assets/images/mail.svg' "
+        ></ion-img>
+        info@voyaah.com
+      </a>
+    </div>
+  </ion-header>
+
+  <header class="hide_mobile">
+    <a class="logo" href="">
+      <ion-img
+        class="ml-2 imglogo"
+        [src]=" '../assets/images/logo.svg' "
+      ></ion-img>
+    </a>
+    <span (click)="openhomemenu()" class="menu_btn">
+      <ion-icon style="zoom: 1.2" name="menu-outline"></ion-icon>
+    </span>
+    <nav class="home_menu">
+      <ul class="lg_nav">
+        <li>
+          <a
+            class="mr-5"
+            [routerLink]="['']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a class="mr-5" [routerLink]="['/about-us']" routerLinkActive="active"
+            >About us</a
+          >
+        </li>
+        <li>
+          <a
+            class="mr-5"
+            [routerLink]="['/staycation']"
+            routerLinkActive="active"
+            >Staycation</a
+          >
+        </li>
+
+        <!-- <li>
+          <ion-button >Launch Modal</ion-button>
+        </li> -->
+
+        <li *ngIf="!isLoggedIn">
+          <div *ngIf="loginModelStatus">
+            <a href="#" class="mr-5" (click)="presentLogin()">Login</a>
+          </div>
+        </li>
+        <!-- <li *ngIf="isLoggedIn">
+          <div *ngIf="loginModelStatus"><a href="#" class="mr-5" (click)="clearUser()">Sign Out</a></div>
+        </li> -->
+        <!-- *ngIf="!loginModelStatus" -->
+        <!-- {{userName}} -->
+        <li
+          class="user_name position-relative dropdown dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          *ngIf="!loginModelStatus"
+        >
+          <ion-icon
+            name="person-circle-outline"
+            class="userIcon color1"
+          ></ion-icon>
+          <ion-text *ngIf="infoMessage.length > 0"> {{infoMessage}} </ion-text>
+          <div
+            class="dropdown-menu mt-0 user_drop"
+            aria-labelledby="dropdownMenuButton"
+          >
+            <a
+              class="dropdown-item"
+              class="d-block p-0 ml-2 mb-1 mr-2"
+              (click)="gotoaccount()"
+              ><img src="../../assets/images/userheadlogo.svg" class="mr-2" />My
+              Account</a
+            >
+            <a
+              class="dropdown-item"
+              class="d-block p-0 ml-2 mb-1 mr-2"
+              [routerLink]="['/myaccount/bookings']"
+              ><img src="../../assets/images/userheadlogo.svg" class="mr-2" />My
+              Booking</a
+            >
+            <a
+              class="dropdown-item"
+              class="d-block p-0 ml-2 mb-1 mr-2"
+              (click)="clearUser()"
+            >
+              <ion-icon name="exit-outline" class="mr-2"></ion-icon>Sign Out
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <ion-card class="showdiv">
+    <div class="shadow bg-white p-3">
+      <ion-card-header
+        ><ion-grid>
+          <ion-row>
+            <ion-col style="margin-top: 5px">
+              <div>
+                <img
+                  style="width: 100px"
+                  class="imglogo"
+                  [src]=" '../assets/images/logo.svg' "
+                />
+              </div>
+            </ion-col>
+            <ion-col style="margin-top: 5px">
+              <div *ngIf="loginModelStatus">
+                <button
+                  class="btn button-container signup-btn-color ml-4"
+                  slot="end"
+                  size="medium"
+                  fill="clear"
+                  (click)="presentSignup()"
+                  >Sign Up</button
+                >
+              </div>
+            </ion-col>
+            <hr />
+            <ion-col>
+              <div>
+                <div *ngIf="!isLoggedIn">
+                  <div
+                    *ngIf="loginModelStatus"
+                    style="border-left: 1px solid #ebeaea;"
+                  >
+                  <button id='two'
+                  class="btn button-container signup-btn-color ml-4"
+                  slot="end"
+                  size="medium"
+                  fill="clear"
+                  (click)="presentLogin()" style="top : 4px; position: relative;"
+                  >Login</button
+                >
+                  </div>
+                </div>
+
+                <li
+                  class="user_name position-relative dropdown dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  *ngIf="!loginModelStatus"
+                >
+                  <ion-icon
+                    name="person-circle-outline"
+                    class="userIcon color1"
+                  ></ion-icon>
+                  <ion-text *ngIf="infoMessage.length > 0">
+                    {{infoMessage}}
+                  </ion-text>
+                  <div
+                    class="dropdown-menu mt-0 user_drop"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      class="dropdown-item"
+                      class="d-block p-0 ml-2 mb-1 mr-2"
+                      (click)="gotoaccount()"
+                      ><img
+                        src="../../assets/images/userheadlogo.svg"
+                        class="mr-2"
+                      />My Account</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      class="d-block p-0 ml-2 mb-1 mr-2"
+                      [routerLink]="['bookings']"
+                      ><img
+                        src="../../assets/images/userheadlogo.svg"
+                        class="mr-2"
+                      />My Booking</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      class="d-block p-0 ml-2 mb-1 mr-2"
+                      (click)="clearUser()"
+                    >
+                      <ion-icon name="exit-outline" class="mr-2"></ion-icon>Sign
+                      Out
+                    </a>
+                  </div>
+                </li>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+    </div>
+
+    <ion-card-content class="list-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <a
+              [routerLink]="['']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}"
+            >
+              <ion-img
+                class="images_background"
+                [src]=" '../assets/images/Group 29215.svg' "
+              ></ion-img>
+            </a>
+            <div class="ion-text-center mt-2">
+              <!-- <ion-note color="tertiary">Home</ion-note> -->
+            </div>
+          </ion-col>
+
+          <ion-col>
+            <a [routerLink]="['/about-us']" routerLinkActive="active">
+              <ion-img
+                class="images_background"
+                [src]=" '../assets/images/Group 29214.svg' "
+              ></ion-img>
+            </a>
+            <div class="ion-text-center mt-2">
+              <!-- <ion-note color="tertiary">About Us</ion-note> -->
+            </div>
+          </ion-col>
+
+          <ion-col>
+            <a [routerLink]="['/staycation']" routerLinkActive="active">
+              <ion-img
+                class="images_background"
+                [src]=" '../assets/images/Group 29206.svg' "
+              ></ion-img>
+            </a>
+            <div class="ion-text-center mt-2">
+              <!-- <ion-note color="tertiary"> Staycations</ion-note> -->
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-header>
+
+<ion-content id="home_main">
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

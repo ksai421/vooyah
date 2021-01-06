@@ -1,0 +1,715 @@
+<ion-row style="overflow: auto">
+  <ion-col size-xs="12" size-md="4">
+    <div class="user_card">
+      <div class="text-center pt-5">
+        <div *ngIf="nameChange">
+          <div class="user_pic mx-auto position-relative">
+            <ion-text class="user_short_name">Fu</ion-text>
+          </div>
+          <ion-text class="user_name d-inline-block pt-3 pb-3"
+            >First User</ion-text
+          >
+        </div>
+        <div *ngIf="!nameChange">
+          <div class="user_pic mx-auto position-relative">
+            <ion-text class="user_short_name">{{ iconName }}</ion-text>
+          </div>
+          <ion-text class="user_name d-inline-block pt-3 pb-3">{{
+            userNameShow
+          }}</ion-text>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col size="4" class="text-center"
+          ><ion-text class="color_primary">Upcoming<br />Trips</ion-text
+          ><ion-text class="color_primary d-block trip_count"
+            >10</ion-text
+          ></ion-col
+        >
+        <ion-col size="4" class="text-center"
+          ><ion-text class="color_primary">Completed<br />Trips</ion-text
+          ><ion-text class="color_primary d-block trip_count"
+            >10</ion-text
+          ></ion-col
+        >
+        <ion-col size="4" class="text-center"
+          ><ion-text class="color_primary">Canceled<br />Trips</ion-text
+          ><ion-text class="color_primary d-block trip_count"
+            >10</ion-text
+          ></ion-col
+        >
+      </ion-row>
+      <ion-text class="joined d-inline-block pt-2 pb-2 pl-3"
+        ><ion-icon name="calendar-outline" class="pr-2"></ion-icon>Joined Sept
+        04</ion-text
+      >
+    </div>
+  </ion-col>
+  <ion-col size-xs="12" size-md="8">
+    <ion-row class="overflow_scroll">
+      <ion-col size-sm="12" size-xl="12" class="mb_custom">
+        <!-- *ngIf="!alreadyRecord" -->
+        <div>
+          <div *ngIf="!updateDetails">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="profile_card pb-3">
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Profile</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Basic information of the user</ion-text
+                  >
+                </div>
+                <div>
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-6 form-group">
+                        <label for="exampleInputEmail1" class="text-dark"
+                          >Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail1"
+                          placeholder="First User ( Name of the user )"
+                          formControlName="firstName"
+                          oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.firstName.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.firstName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.firstName.errors.required">
+                            Name is required
+                          </div>
+                          <div *ngIf="f.firstName.errors.minlength">
+                            Enter valid Name
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 form-group">
+                        <label for="exampleInputEmail2" class="text-dark"
+                          >Date Of Birth</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control input-width"
+                          placeholder="First User ( Name of the user )"
+                          formControlName="dateOfBirth"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.dateOfBirth.errors
+                          }"
+                          [max]="minDate"
+                        />
+                        <div
+                          *ngIf="submitted && f.dateOfBirth.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.dateOfBirth.errors.required">
+                            Date Of Birth is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label
+                          for="exampleFormControlSelect1 "
+                          class="text-dark"
+                          >Gender</label
+                        >
+                        <select
+                          class="form-control input-width"
+                          id="exampleFormControlSelect1"
+                          formControlName="gender"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.gender.errors
+                          }"
+                        >
+                          <option value="">Gender</option>
+                          <option vlaue="Male">Male</option>
+                          <option vlaue="Female">Female</option>
+                          <option vlaue="Other">Other</option>
+                        </select>
+                        <div
+                          *ngIf="submitted && f.gender.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.gender.errors.required">
+                            Gender is required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-6">
+                        <label
+                          for="exampleFormControlSelectt text-dark"
+                          class="text-dark"
+                          >Marital Status</label
+                        >
+                        <select
+                          class="form-control input-width"
+                          id="exampleFormControlSelectt"
+                          formControlName="maritalStatus"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.maritalStatus.errors
+                          }"
+                        >
+                          <option value="">Marital Status</option>
+                          <option value="Married">Married</option>
+                          <option value="Bachelor">Bachelor</option>
+                        </select>
+                        <div
+                          *ngIf="submitted && f.maritalStatus.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.maritalStatus.errors.required">
+                            Marital Status is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Login Details</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Manage Your Credentials</ion-text
+                  >
+                </div>
+
+                <div *ngIf="userVerify">
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail3" class="text-dark"
+                          >Mobile No</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail3"
+                          placeholder="+91 - 999 999 9999"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                          formControlName="mobileNo"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.mobileNo.errors
+                          }"
+                         />
+                        <div
+                          *ngIf="submitted && f.mobileNo.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.mobileNo.errors.required">
+                            Mobile number is required
+                          </div>
+                          <!-- <div *ngIf="f.mobileNo.errors.minlength">
+                            Mobile number must be valid(10 digits only)
+                          </div>
+                          <div *ngIf="f.mobileNo.errors.maxlength">
+                            Mobile number must be valid(10 digits only)
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail4" class="text-dark"
+                          >Email</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control input-width"
+                          id="exampleInputEmail4"
+                          placeholder="name@example.com"
+                          formControlName="email"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.email.errors
+                          }"
+                          readonly />
+                        <div
+                          *ngIf="submitted && f.email.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.email.errors.required">
+                            Email is required
+                          </div>
+                          <div *ngIf="f.email.errors.email">
+                            Email must be a valid email address
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="!userVerify">
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail3" class="text-dark"
+                          >Mobile No</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail3"
+                          placeholder="+91 - 999 999 9999"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                          formControlName="mobileNo"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.mobileNo.errors
+                          }"
+                          readonly />
+                        <div
+                          *ngIf="submitted && f.mobileNo.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.mobileNo.errors.required">
+                            Mobile number is required
+                          </div>
+                          <!-- <div *ngIf="f.mobileNo.errors.minlength">
+                            Mobile number must be valid(10 digits only)
+                          </div>
+                          <div *ngIf="f.mobileNo.errors.maxlength">
+                            Mobile number must be valid(10 digits only)
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail4" class="text-dark"
+                          >Email</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control input-width"
+                          id="exampleInputEmail4"
+                          placeholder="name@example.com"
+                          formControlName="email"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.email.errors
+                          }"
+                           />
+                        <div
+                          *ngIf="submitted && f.email.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.email.errors.required">
+                            Email is required
+                          </div>
+                          <div *ngIf="f.email.errors.email">
+                            Email must be a valid email address
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Passport Details</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Your Passport Information</ion-text
+                  >
+                </div>
+                <div>
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail1" class="text-dark"
+                          >Passport</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail1"
+                          placeholder="Passport Number"
+                          formControlName="number"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.number.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.number.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.number.errors.required">
+                            Passport number is required
+                          </div>
+                          <!-- <div *ngIf="f.number.errors.pattern">
+                            Passport number shoule be valid
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-6 form-group">
+                        <label
+                          for="exampleFormControlSelect1 "
+                          class="text-dark"
+                          >Country</label
+                        >
+                        <select
+                          class="form-control input-width"
+                          id="exampleFormControlSelect1"
+                          formControlName="country"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.country.errors
+                          }"
+                        >
+                          <option value="">Country</option>
+                          <option vlaue="India">India</option>
+                          <option vlaue="UK">UK</option>
+                          <option vlaue="US">US</option>
+                        </select>
+                        <div
+                          *ngIf="submitted && f.country.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.country.errors.required">
+                            Country is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-6">
+                        <label for="exampleInputEmail2" class="text-dark"
+                          >Expiry Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control input-width"
+                          placeholder="First User ( Name of the user )"
+                          formControlName="expiry"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.expiry.errors
+                          }"
+                          [min]="minDate"
+                        />
+                        <div
+                          *ngIf="submitted && f.expiry.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.expiry.errors.required">
+                            expiry is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="text-right pt-4 pr-4">
+                  <button class="btn save_button">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--  *ngIf="alreadyRecord"-->
+        <div>
+          <div *ngIf="updateDetails">
+            <form [formGroup]="registerFormEdit" (ngSubmit)="onSubmitEdit()">
+              <div class="profile_card pb-3">
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Profile</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Basic information Of the user</ion-text
+                  >
+                </div>
+                <div>
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-6 form-group">
+                        <label for="exampleInputEmail5" class="text-dark"
+                          >Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail5"
+                          placeholder="First User ( Name of the user )"
+                          formControlName="firstName"
+                          oninput="this.value = this.value.replace(/[^a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.firstName.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && e.firstName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.firstName.errors.required">
+                            Name is required
+                          </div>
+                          <div *ngIf="e.firstName.errors.minlength">
+                            Enter valid Name
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 form-group">
+                        <label for="exampleInputEmail6" class="text-dark"
+                          >Date Of Birth</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control input-width"
+                          placeholder="First User ( Name of the user )"
+                          formControlName="dateOfBirth"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.dateOfBirth.errors
+                          }"
+                          [max]="minDate"
+                        />
+                        <div
+                          *ngIf="submitted && e.dateOfBirth.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.dateOfBirth.errors.required">
+                            Date Of Birth is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label
+                          for="exampleFormControlSelectts "
+                          class="text-dark"
+                          >Gender</label
+                        >
+                        <select
+                          class="form-control input-width"
+                          id="exampleFormControlSelectts"
+                          formControlName="gender"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.gender.errors
+                          }"
+                        >
+                          <option value="">Gender</option>
+                          <option vlaue="Male">Male</option>
+                          <option vlaue="Female">Female</option>
+                          <option vlaue="Other">Other</option>
+                        </select>
+                        <div
+                          *ngIf="submitted && e.gender.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.gender.errors.required">
+                            Gender is required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-6">
+                        <label
+                          for="exampleFormControlSelect5 text-dark"
+                          class="text-dark"
+                          >Marital Status</label
+                        >
+                        <select
+                          class="form-control input-width"
+                          id="exampleFormControlSelect5"
+                          formControlName="maritalStatus"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.maritalStatus.errors
+                          }"
+                        >
+                          <option value="">Marital Status</option>
+                          <option value="Married">Married</option>
+                          <option value="Bachelor">Bachelor</option>
+                        </select>
+                        <div
+                          *ngIf="submitted && e.maritalStatus.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.maritalStatus.errors.required">
+                            Marital Status is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Login Details</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Manage Your Credentials</ion-text
+                  >
+                </div>
+                <div>
+                  <div class="container-fluid form_padding">
+                    <div class="row">
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail7" class="text-dark"
+                          >Mobile No</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control input-width"
+                          id="exampleInputEmail7"
+                          placeholder="+91 - 999 999 9999"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                          formControlName="mobileNo"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.mobileNo.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && e.mobileNo.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.mobileNo.errors.required">
+                            Mobile number is required
+                          </div>
+                          <div *ngIf="e.mobileNo.errors.minlength">
+                            Mobile number must be valid(10 digits only)
+                          </div>
+                          <div *ngIf="e.mobileNo.errors.maxlength">
+                            Mobile number must be valid(10 digits only)
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6 form-group">
+                        <label for="exampleInputEmail8" class="text-dark"
+                          >Email</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control input-width"
+                          id="exampleInputEmail8"
+                          placeholder="name@example.com"
+                          formControlName="email"
+                          [ngClass]="{
+                            'is-invalid': submitted && e.email.errors
+                          }"
+                          readonly />
+                        <div
+                          *ngIf="submitted && e.email.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="e.email.errors.required">
+                            Email is required
+                          </div>
+                          <div *ngIf="e.email.errors.email">
+                            Email must be a valid email address
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile_login_details border-line">
+                  <ion-text class="font-big color_primary d-block"
+                    >Passport Details</ion-text
+                  >
+                  <ion-text class="font-small color_primary"
+                    >Your Passport Information</ion-text
+                  >
+                </div>
+                <div>
+                  <div>
+                    <div class="container-fluid form_padding">
+                      <div class="row">
+                        <div class="col-6 form-group">
+                          <label for="exampleInputEmail1" class="text-dark"
+                            >Passport</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control input-width"
+                            id="exampleInputEmail1"
+                            placeholder="Passport Number"
+                            formControlName="number"
+                            [ngClass]="{
+                              'is-invalid': submitted && e.number.errors
+                            }"
+                          />
+                          <div
+                            *ngIf="submitted && e.number.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="e.number.errors.required">
+                              Passport number is required
+                            </div>
+                            <!-- <div *ngIf="e.number.errors.pattern">
+                              Passport number shoule be valid Name
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-6 form-group">
+                          <label
+                            for="exampleFormControlSelect1 "
+                            class="text-dark"
+                            >Country</label
+                          >
+                          <select
+                            class="form-control input-width"
+                            id="exampleFormControlSelect1"
+                            formControlName="country"
+                            [ngClass]="{
+                              'is-invalid': submitted && e.country.errors
+                            }"
+                          >
+                            <option vlaue="">Country</option>
+                            <option vlaue="India">India</option>
+                            <option vlaue="UK">UK</option>
+                            <option vlaue="US">US</option>
+                          </select>
+                          <div
+                            *ngIf="submitted && e.country.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="e.country.errors.required">
+                              Country is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-6">
+                          <label for="exampleInputEmail2" class="text-dark"
+                            >Expiry Date</label
+                          >
+                          <input
+                            type="date"
+                            class="form-control input-width"
+                            placeholder="First User ( Name of the user )"
+                            formControlName="expiry"
+                            [ngClass]="{
+                              'is-invalid': submitted && e.expiry.errors
+                            }"
+                            [min]="minDate"
+                          />
+                          <div
+                            *ngIf="submitted && e.expiry.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="e.dateOfBirth.errors.required">
+                              expiry is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right pt-4 pr-4">
+                  <button class="btn save_button">Update</button>
+                </div>
+                <br />
+              </div>
+            </form>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+</ion-row>

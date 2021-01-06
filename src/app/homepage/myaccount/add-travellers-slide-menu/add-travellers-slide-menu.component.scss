@@ -1,0 +1,23 @@
+ion-button {
+  text-transform: none;
+  width: 50px;
+  height: 30px;
+}
+.expiryDate {
+  width: 168px;
+}
+.passport-font-size {
+  font-size: 16px;
+}
+.shadow {
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.bg-color-header {
+  background: #fbfaf8;
+}
+.font-size-header {
+  font-size: 12px;
+}
+.backdrop-no-scroll ion-content {
+  --overflow: hidden;
+}

@@ -1,0 +1,736 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateAwsCurrentItineraryModel(
+  $input: CreateAWSCurrentItineraryModelInput!
+) {
+  createAWSCurrentItineraryModel(input: $input) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAwsCurrentItineraryModel(
+  $input: UpdateAWSCurrentItineraryModelInput!
+) {
+  updateAWSCurrentItineraryModel(input: $input) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAwsCurrentItineraryModel(
+  $input: DeleteAWSCurrentItineraryModelInput!
+) {
+  deleteAWSCurrentItineraryModel(input: $input) {
+    id
+    username
+    itineraryName
+    currentItinerary {
+      startDate
+      endDate
+      originCity {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      destinationCities {
+        id
+        airportCode
+        airportName
+        cityName
+        countryCode
+        countryName
+        vendorName
+        latitude
+        longitude
+      }
+      travelType
+      travellers {
+        adultCount
+        childCount
+        infantCount
+      }
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateAwsUserProfileModel($input: CreateAWSUserProfileModelInput!) {
+  createAWSUserProfileModel(input: $input) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAwsUserProfileModel($input: UpdateAWSUserProfileModelInput!) {
+  updateAWSUserProfileModel(input: $input) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAwsUserProfileModel($input: DeleteAWSUserProfileModelInput!) {
+  deleteAWSUserProfileModel(input: $input) {
+    id
+    username
+    userProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    familyProfile {
+      id
+      firstName
+      middleName
+      lastName
+      relationshipToUser
+      dateOfBirth
+      gender
+      maritalStatus
+      mobileNo
+      email
+      passport {
+        number
+        issuedOn
+        expiry
+        country
+        city
+      }
+      address
+      city
+      country
+      zip
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateAwsTravelPackage($input: CreateAWSTravelPackageInput!) {
+  createAWSTravelPackage(input: $input) {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAwsTravelPackage($input: UpdateAWSTravelPackageInput!) {
+  updateAWSTravelPackage(input: $input) {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAwsTravelPackage($input: DeleteAWSTravelPackageInput!) {
+  deleteAWSTravelPackage(input: $input) {
+    id
+    name
+    values
+    availableFrom
+    availableUpTo
+    packageOwners
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAwsTrawexSettingsModel(
+  $input: CreateAWSTrawexSettingsModelInput!
+) {
+  createAWSTrawexSettingsModel(input: $input) {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAwsTrawexSettingsModel(
+  $input: UpdateAWSTrawexSettingsModelInput!
+) {
+  updateAWSTrawexSettingsModel(input: $input) {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAwsTrawexSettingsModel(
+  $input: DeleteAWSTrawexSettingsModelInput!
+) {
+  deleteAWSTrawexSettingsModel(input: $input) {
+    id
+    flights {
+      default {
+        percent
+        minimum
+      }
+      byAirline {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      byDestination {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    hotels {
+      default {
+        percent
+        minimum
+      }
+      byHotelChain {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAwsMusementSettingsModel(
+  $input: CreateAWSMusementSettingsModelInput!
+) {
+  createAWSMusementSettingsModel(input: $input) {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAwsMusementSettingsModel(
+  $input: UpdateAWSMusementSettingsModelInput!
+) {
+  updateAWSMusementSettingsModel(input: $input) {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAwsMusementSettingsModel(
+  $input: DeleteAWSMusementSettingsModelInput!
+) {
+  deleteAWSMusementSettingsModel(input: $input) {
+    id
+    activities {
+      default {
+        percent
+        minimum
+      }
+      byActivity {
+        name
+        code
+        margin {
+          percent
+          minimum
+        }
+      }
+      cancel {
+        minimumFee
+        adminFee
+        rules {
+          refundPercent
+          graceDays
+        }
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAwsTransactionModel($input: CreateAWSTransactionModelInput!) {
+  createAWSTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAwsTransactionModel($input: UpdateAWSTransactionModelInput!) {
+  updateAWSTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAwsTransactionModel($input: DeleteAWSTransactionModelInput!) {
+  deleteAWSTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDetails
+    travelStartDate
+    travelCity
+    email
+    mobile
+    transactionDecription
+    bookingReference
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateAwsStaycationTransactionModel(
+  $input: CreateAWSStaycationTransactionModelInput!
+) {
+  createAWSStaycationTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAwsStaycationTransactionModel(
+  $input: UpdateAWSStaycationTransactionModelInput!
+) {
+  updateAWSStaycationTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAwsStaycationTransactionModel(
+  $input: DeleteAWSStaycationTransactionModelInput!
+) {
+  deleteAWSStaycationTransactionModel(input: $input) {
+    id
+    username
+    itineraryName
+    transactionId
+    transactionType
+    transactionStatus
+    transactionDate
+    transactionDetails
+    vendorId
+    packageId
+    bookingReference
+    email
+    mobileNo
+    createdAt
+    updatedAt
+    owner
+  }
+}
